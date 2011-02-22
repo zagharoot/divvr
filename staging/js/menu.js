@@ -85,7 +85,7 @@ Menu.prototype =
 			if(s!=""){
 				option = document.createElement("div");
 				option.id = i;
-				option.className=(s=="WEB"||s=="RIBBON"||s=="DIAMONDS"||s=="SHADED DIAMONDS")?"bottomBordered":"";
+				option.className=(s=="WEB"||s=="RIBBON"||s=="DIAMONDS")?"bottomBordered":"";
 				option.innerHTML = s;
 				brushPop.appendChild(option);
 				option.addEventListener('click'
@@ -99,25 +99,8 @@ Menu.prototype =
 									brush = eval("new " + BRUSHES[brushId] + "(context)");
 									window.location.hash = BRUSHES[brushId];
 								}
-								
-								if(BRUSHES[brushId]=="eraser"){
-									document.getElementById('eraserCursor').style.visibility = 'visible';
-									eraserMode=true;
-									document.getElementById("eraserCursor").style.width=10+"px";
-									document.getElementById("eraserCursor").style.height=10+"px";
-									BRUSH_SIZE=10;
-									//menu.brushSize.value=BRUSH_SIZE;
-									document.getElementById('brushSize').value=BRUSH_SIZE;
-								}
-								else {
-									document.getElementById('eraserCursor').style.visibility = 'hidden';
-									eraserMode=false;
-									BRUSH_SIZE=1;
-									document.getElementById('brushSize').value=BRUSH_SIZE;
-								}
 							}
 						, false);
-
 			}
 		}
 		this.container.appendChild(brushPop);
@@ -136,8 +119,6 @@ Menu.prototype =
 					if(BRUSH_SIZE>1){
 						BRUSH_SIZE-=1;
 						menu.brushSize.value=BRUSH_SIZE;
-						document.getElementById("eraserCursor").style.width=BRUSH_SIZE+"px";
-						document.getElementById("eraserCursor").style.height=BRUSH_SIZE+"px";
 					}
 				}
 				, false);
@@ -152,10 +133,8 @@ Menu.prototype =
 		increaseSize.appendChild(document.createTextNode("+"));
 		increaseSize.addEventListener('click'
 				,function(evt){
-					BRUSH_SIZE+=1;
-					menu.brushSize.value=BRUSH_SIZE;
-					document.getElementById("eraserCursor").style.width=BRUSH_SIZE+"px";
-					document.getElementById("eraserCursor").style.height=BRUSH_SIZE+"px";
+						  BRUSH_SIZE+=1;
+						  menu.brushSize.value=BRUSH_SIZE;
 				}
 				, false);
 		increaseSize.onselectstart = function(){ return false };

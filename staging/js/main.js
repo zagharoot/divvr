@@ -1,5 +1,5 @@
 const REV = 6,
-       BRUSHES = ["sketchy", "super_sketchy", "shaded", "super_shaded", "chrome", "fur", "longfur", "super_longfur", "web", "", "simple","ribbon", "", "rectangles", "squares", "polygons", "stars", "diamonds", "shaded_circles", "shaded_grid","shaded_squares","shaded_polygons","shaded_stars","shaded_diamonds","eraser"],
+       BRUSHES = ["sketchy", "shaded", "chrome", "fur", "longfur", "web", "", "simple","ribbon", "", "rectangles", "squares", "polygons", "stars", "diamonds", "shaded_circles", "shaded_grid","shaded_squares","shaded_polygons","shaded_stars","shaded_diamonds"],
        USER_AGENT = navigator.userAgent.toLowerCase();
 
 var SCREEN_WIDTH = window.innerWidth,

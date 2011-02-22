@@ -1,9 +1,6 @@
 historyArr=null;
 curHisInd=-1;
 const HISTORY_SIZE=3;
-alredyShown=false;
-eraserMode = false;
-eraserMouseDown = false;
 
 /*DOCUMENT LOADED*/
 $(document).ready(function(){
@@ -198,8 +195,7 @@ $(document).ready(function(){
 			createLoadAction();
 		
 		}catch(e){
-			showInfoDialog("Save","Could not save, local storage quota exceeded. You can still export your image.");
-			
+			showInfoDialog("Save","Could not save, local storage quota exceeded.");
 		}
 	});
 	
@@ -302,29 +298,6 @@ $(document).ready(function(){
 		$("#fontLst").slideUp();
 	});
 	
-	//eraserCursor
-	$("body").append("<div id='eraserCursor' style='position: absolute; top:500px; left:500px; border:1px solid red;width:10px;height:10px;'></div>");
-	document.getElementById('eraserCursor').style.visibility = 'hidden';
-	$(document).mousemove(function(e){
-		var w=$("#eraserCursor").width();
-		//var h=$("#eraserCursor").height();
-		
-//		$("#eraserCursor").css("top",w/2+"px");
-//		$("#eraserCursor").css("left",w/2+"px");
-//		$("#eraserCursor").css("top",e.pageY-BRUSH_SIZE/2+"px");
-//		$("#eraserCursor").css("left",e.pageX-BRUSH_SIZE/2+"px");
-		$("#eraserCursor").css("top",e.pageY-w/2+"px");
-		$("#eraserCursor").css("left",e.pageX-w/2+"px");
-		if(eraserMode && eraserMouseDown) context.clearRect(e.pageX-w/2, e.pageY-w/2, w, w);
-	});
-	$(document).mousedown(function(e){
-		//$("#eraserCursor").hide();
-		eraserMouseDown=true;
-	});
-	$(document).mouseup(function(e){
-		eraserMouseDown=false;
-	});
-	
 });
 
 
@@ -400,13 +373,8 @@ function recordHisToArr(){
 		var nextInd = curHisInd+1;	nextInd = (nextInd==HISTORY_SIZE)?0:nextInd;
 		localStorage.setItem("h"+nextInd,"");
 	}catch(e){
-		if(!alredyShown){
-			showInfoDialog("History","History recording action fail, local storage quota exceeded.");
-			curHisInd=preHisInd;
-			alredyShown=true;
-		}else{
-			
-		}
+		showInfoDialog("History","History recording action fail, local storage quota exceeded.");
+		curHisInd=preHisInd;
 	}
 }
 
